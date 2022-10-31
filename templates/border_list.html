@@ -1,10 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Daily Fit | 게시판</title>
-</head>
-<body>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <title>Daily Fit | 게시판</title>
+
+    <!--    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="../static/border_page_css.css" rel="stylesheet" type="text/css">
+
+    <script>
+        function showAndHide() {
+            let nav_list = document.getElementById("nav-list")
+            if (nav_list.style.display === "none") {
+                nav_list.style.display = "flex";
+            } else {
+                nav_list.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="all-wrap">
+        <div class="top-wrap">
+            <div class="blank"></div>
+            <div class="logo-image">
+                <a href="#"><img src="../static/daily_fit_logo.jpg" alt="No Image"></a>
+            </div>
+            <div class="button-wrap">
+                <a href="/posting/">
+                    <button>새 글 작성</button>
+                </a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight"
+                        aria-controls="offcanvasRight"><i class="bi bi-list"></i></button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                     aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Daliy Fit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <hr/>
+                    <div class="offcanvas-body">
+                        <a href="/">사이트소개글</a>
+                        <a href="#">로그인</a>
+                        <a href="#">회원가입</a>
+                        <a href="/list">게시판</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+                <a href="/read/">
+                    <div class="card h-100">
+                        <img src="../static/daily_fit_logo.jpg" class="card-img-top" alt="NO IMAGE">
+                        <div class="card-body">
+                            <h5 class="card-title">오늘 하루 식단 일기</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">hjun0917</small>
+                            <small class="text-muted">❤100</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/read/">
+                    <div class="card h-100">
+                        <img src="../static/daily_fit_logo.jpg" class="card-img-top" alt="NO IMAGE">
+                        <div class="card-body">
+                            <h5 class="card-title">오늘 하루 식단 일기</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">hjun0917</small>
+                            <small class="text-muted">❤100</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/read/">
+                    <div class="card h-100">
+                        <img src="../static/daily_fit_logo.jpg" class="card-img-top" alt="NO IMAGE">
+                        <div class="card-body">
+                            <h5 class="card-title">오늘 하루 식단 일기</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">hjun0917</small>
+                            <small class="text-muted">❤100</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/read/">
+                    <div class="card h-100">
+                        <img src="../static/daily_fit_logo.jpg" class="card-img-top" alt="NO IMAGE">
+                        <div class="card-body">
+                            <h5 class="card-title">오늘 하루 식단 일기</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">hjun0917</small>
+                            <small class="text-muted">❤100</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/read/">
+                    <div class="card h-100">
+                        <img src="../static/daily_fit_logo.jpg" class="card-img-top" alt="NO IMAGE">
+                        <div class="card-body">
+                            <h5 class="card-title">오늘 하루 식단 일기</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">hjun0917</small>
+                            <small class="text-muted">❤100</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

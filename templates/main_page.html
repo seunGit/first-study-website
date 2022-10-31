@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Fit Diary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        body {
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100vh;
+            z-index: -100;
+            opacity: 60%; /* 투명화 */
+            object-fit: cover;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .toptop-warp {
+            background-color: transparent;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .top-wrap {
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .btn {
+            color: black;
+            font-size: 32px;
+            background-color: transparent;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: lightskyblue;
+        }
+
+        .offcanvas {
+            width: 250px;
+        }
+
+        .offcanvas-title {
+            font-size: 32px;
+        }
+
+        .offcanvas-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .offcanvas-body > a {
+            text-decoration: none;
+            color: black;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .logo-image > img {
+            width: 256px;
+            height: 256px;
+            z-index: 100;
+            margin-left: 180px;
+        }
+
+        .middle {
+            background-color: transparent;
+            width: 50%;
+            height: 50%;
+        }
+
+        .middle > p {
+            color: #13191c;
+            text-align: center;
+            font-size: 30px;
+            line-height: 100%;
+        }
+
+        .footer {
+            background-color: transparent;
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .weather {
+            background-color: transparent;
+            display: flex;
+            margin-left: 10px;
+        }
+
+        .weather img {
+        }
+
+        .weather > p {
+            margin: auto;
+            padding-left: 10px;
+            font-size: 15px;
+        }
+
+        .sns {
+            width: 180px;
+            display: flex;
+            justify-content: space-between;
+            margin-right: 20px;
+        }
+
+        .footer img {
+            display: block;
+        }
+
+        .half_highlight {
+            background: -webkit-linear-gradient(bottom, #ffffbb 50%, transparent 50%);
+            background: -o-linear-gradient(bottom, #ffffbb 50%, transparent 50%);
+            background: linear-gradient(to top, #ffffbb 50%, transparent 50%); /*맨 아래것만 사용해도 거진 다 됩니다*/
+        }
+    </style>
+</head>
+<body>
+    <div class="toptop-warp">
+        <div class="top-wrap">
+            <div class="logo-image"><img src="../static/daily_fit_logo.jpg" alt="No Image"></div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight"><i class="bi bi-list"></i></button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                 aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Daliy Fit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <a href="/">사이트소개글</a>
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                    <a href="/list/">게시판</a>
+                </div>
+            </div>
+        </div>
+        <video muted autoplay loop class="bg-video">
+            <source src="../static/exercise.mp4" type="video/mp4">
+        </video>
+        <div class="middle">
+            <p><span class="half_highlight">Daily Fit Diary</span> 입니다.</p>
+            <p><span class="half_highlight">운동일지</span>를 작성하면서 운동해봐요 !</p>
+            <p>오늘은 무슨 운동을 하셨나요?</p>
+            <p><span class="half_highlight">꿀팁 공유</span>도 하고</p>
+            <p>함께 근손실도 막아보아요 !</p>
+        </div>
+        <div class="footer">
+            <div class="weather">
+                <a href="https://www.instagram.com/" target="_blank"><img
+                        src="https://www.weather.go.kr/w/iphone-shortcut.png" alt="" width="40px" height="40px"></a>
+                <p><a>온도 : 18도</a>, <a>미세먼지 : 안좋앙</a></p>
+            </div>
+            <div class="sns">
+                <a href="https://www.instagram.com/" target="_blank"><img src="../static/insta.png" width="30px"
+                                                                          height="30px"></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="../static/facebook.png" width="30px"
+                                                                         height="30px"></a>
+                <a href="https://www.twitter.com/" target="_blank"><img src="../static/twitter.png" width="30px"
+                                                                        height="30px"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
