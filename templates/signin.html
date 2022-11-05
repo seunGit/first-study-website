@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Ajax, JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../static/icon-img.png"
+    />
+    <title>로그인</title>
+    <style>
+      * {
+        font-family: "Nanum Gothic", sans-serif;
+      }
+    </style>
+    <style>
+      * {
+        font-family: "Nanum Gothic", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .sign_up_wrap {
+        width: 300px;
+        height: 500px;
+        margin: auto;
+      }
+
+      .wrap {
+        height: 120px;
+      }
+
+      .text {
+        text-align: right;
+        color: red;
+      }
+
+      .btn_box {
+        float: right;
+      }
+
+      .main_wrap {
+        background-color: white;
+        width: 400px;
+        height: 530px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        margin: auto;
+        border: 1px solid gray;
+        border-radius: 20px;
+      }
+      .main_wrap:hover {
+        border: 2px solid gray;
+      }
+      .logo-image {
+        margin: auto;
+      }
+      .top-wrap {
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        margin: 20px;
+        height: 5vh;
+      }
+      .bi-list {
+        color: black;
+        font-size: 32px;
+        background-color: transparent;
+        border: none;
+      }
+      .btn-primary {
+        background-color: transparent;
+        border-color: transparent;
+        padding: 0;
+        font-size: 32px;
+      }
+      .btn-primary:hover {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      .offcanvas {
+        width: 250px;
+      }
+
+      .offcanvas-title {
+        font-size: 32px;
+      }
+
+      .offcanvas-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      .offcanvas-body > a {
+        text-decoration: none;
+        color: black;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+    </style>
+    <!-- ! Jquery-cookie-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+      integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      function login() {
+        // <!-- ! 인풋에서 아이디,패스워드를 가져온다. -->
+        let user_id = $("#inputId").val();
+        let user_pw = $("#inputPassword").val();
+        // <!-- ! 아이디, 패스워드 POST전송 -->
+        $.ajax({
+          type: "POST",
+          url: "/signin",
+          data: { id_give: user_id, pw_give: user_pw },
+          success: function (response) {
+            if (response["result"] === "success") {
+              alert("로그인에 성공했습니다!");
+              $.cookie("mytoken", response["token"], { path: "/" });
+              window.location.href = "/";
+            } else {
+              alert(response["msg"]);
+            }
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="top-wrap">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasRightLabel">Daliy Fit</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <a href="/">사이트소개글</a>
+          <a href="/postlist/">게시판</a>
+          <a href="/signin/">로그인</a>
+          <a href="/signup/">회원가입</a>
+        </div>
+      </div>
+    </div>
+    <div class="main_wrap">
+      <div class="logo-image">
+        <img
+          src="../static/daily_fit_logo.jpg"
+          alt="No Image"
+          width="200px"
+          height="200px"
+        />
+      </div>
+      <div class="sign_up_wrap">
+        <div class="wrap">
+          <label for="inputId" class="col-form-label" onchange="">아이디</label>
+          <input type="text" class="form-control" id="inputId" />
+        </div>
+        <div class="wrap">
+          <label for="inputPassword" class="col-form-label" onchange=""
+            >비밀번호</label
+          >
+          <input type="password" class="form-control" id="inputPassword" />
+          <p class="text"></p>
+        </div>
+        <div class="btn_box">
+          <button type="button" class="btn btn-light" onclick="login()">
+            로그인
+          </button>
+          <button type="button" class="btn btn-light">취소</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

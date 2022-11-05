@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Ajax, JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <title>회원가입</title>
+    <style>
+      * {
+        font-family: "Nanum Gothic", sans-serif;
+      }
+    </style>
+    <style>
+      * {
+        font-family: "Nanum Gothic", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .sign_up_wrap {
+        width: 300px;
+        height: 500px;
+        margin: auto;
+      }
+
+      .wrap {
+        height: 120px;
+      }
+
+      .text {
+        text-align: right;
+        color: red;
+      }
+
+      .btn_box {
+        float: right;
+      }
+
+      .main_wrap {
+        background-color: white;
+        width: 400px;
+        height: 620px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        margin: auto;
+        border: 1px solid gray;
+        border-radius: 20px;
+      }
+
+      .main_wrap:hover {
+        border: 2px solid gray;
+      }
+
+      .logo-image {
+        margin: auto;
+      }
+
+      .top-wrap {
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        margin: 20px;
+        height: 5vh;
+      }
+      .wrap > button {
+        float: right;
+      }
+
+      .bi-list {
+        color: black;
+        font-size: 32px;
+        background-color: transparent;
+        border: none;
+      }
+
+      .btn-primary {
+        background-color: transparent;
+        border-color: transparent;
+        padding: 0;
+        font-size: 32px;
+      }
+
+      .btn-primary:hover {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      .offcanvas {
+        width: 250px;
+      }
+
+      .offcanvas-title {
+        font-size: 32px;
+      }
+
+      .offcanvas-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      .offcanvas-body > a {
+        text-decoration: none;
+        color: black;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-wrap">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasRightLabel">Daliy Fit</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <a href="/">사이트소개글</a>
+          <a href="/postlist/">게시판</a>
+          <a href="/signin/">로그인</a>
+          <a href="/signup/">회원가입</a>
+        </div>
+      </div>
+    </div>
+    <div class="main_wrap">
+      <div class="logo-image">
+        <img
+          src="../static/daily_fit_logo.jpg"
+          alt="No Image"
+          width="200px"
+          height="200px"
+        />
+      </div>
+      <div class="sign_up_wrap">
+        <div class="wrap">
+          <label for="inputId" class="col-form-label" onchange="">아이디</label>
+          <input type="text" class="form-control inputId" id="inputId" />
+          <button
+            type="button"
+            class="btn btn-light mt-1 id_check"
+            onclick="check_id()"
+          >
+            중복확인
+          </button>
+        </div>
+        <div class="wrap">
+          <label for="inputPassword" class="col-form-label">비밀번호</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            oninput="check_pw1()"
+          />
+          <p class="text1"></p>
+        </div>
+        <div class="wrap">
+          <label for="checkPassword" class="col-form-label"
+            >비밀번호 확인</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="checkPassword"
+            oninput="check_pw2()"
+          />
+          <p class="text2"></p>
+        </div>
+        <div class="btn_box">
+          <button type="button" class="btn btn-light" onclick="sign_up()">
+            회원가입
+          </button>
+          <button type="button" class="btn btn-light">취소</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let url = document.location.href;
+      url = url.split("_")[0];
+      console.log(url);
+      let c_id = 0;
+      let c_pw = 0;
+
+      // id 유효성 검사, 1)영문, 숫자, 2)중복x 3) 8~20자리
+      function check_id() {
+        console.log("체크아이디 눌렀음");
+        let user_id = $("#inputId").val();
+        // console.log(user_id);
+        let pattern1 = /[0-9]/; // 숫자
+        let pattern2 = /[a-zA-Z]/; // 문자
+        // let pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+
+        if (user_id === "") {
+          alert("아이디를 입력하세요.");
+        } else if (
+          !pattern1.test(user_id) ||
+          !pattern2.test(user_id) ||
+          user_id.length < 8 ||
+          user_id.length > 20
+        ) {
+          alert("아이디는 8~20자리 이내의 영문과 숫자로 입력해주세요.");
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "/signup/id_check",
+            data: { id_give: user_id },
+            success: function (response) {
+              // a 서버에서 status를 0 또는 1로 받음.
+              let a = response["status"];
+
+              if (a === 0) {
+                alert("이미 사용중인 아이디입니다.");
+                document.getElementById("inputId").value = null;
+              } else {
+                alert("사용 가능한 아이디입니다.");
+                c_id = 1;
+              }
+            },
+          });
+        }
+      }
+
+      //비밀번호 유효성 검사
+      function check_pw1() {
+        let user_pw = $("#inputPassword").val();
+
+        let pattern1 = /[0-9]/; // 숫자
+        let pattern2 = /[a-zA-Z]/; // 문자
+        // let pattern3 = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+
+        if (user_pw === "") {
+          $(".text1").text("");
+        } else if (
+          user_pw.length < 8 ||
+          !pattern1.test(user_pw) ||
+          !pattern2.test(user_pw)
+        ) {
+          $(".text1").text(
+            "비밀번호는 8자리 이상의 영문과 숫자로 입력해주세요."
+          );
+          $(".text1").css("color", "red");
+        } else {
+          $(".text1").text("사용가능한 비밀번호 입니다.");
+          $(".text1").css("color", "blue");
+        }
+      }
+
+      //비밀번호 확인
+      function check_pw2() {
+        let user_pw1 = $("#inputPassword").val();
+        let user_pw2 = $("#checkPassword").val();
+
+        if (user_pw2 === "") {
+          $(".text2").text("");
+        } else if (user_pw1 !== user_pw2) {
+          $(".text2").text("비밀번호가 일치하지 않습니다.");
+          $(".text2").css("color", "red");
+        } else {
+          $(".text2").text("비밀번호가 일치 합니다.");
+          $(".text2").css("color", "blue");
+          c_pw = 1;
+        }
+      }
+
+      // 회원가입 누르면, 조건 확인 후 DB에 회원 정보 저장
+      function sign_up() {
+        let user_id = $("#inputId").val();
+        let user_pw = $("#inputPassword").val();
+
+        if (c_id === 0) {
+          alert("아이디 중복확인이 필요합니다.");
+        } else if (c_pw === 0) {
+          alert("비밀번호 확인이 필요합니다.");
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "/signup/create",
+            data: { id_give: user_id, pw_give: user_pw },
+            success: function (response) {
+              alert(response["msg"]);
+              // url = url + "_in";
+              window.location.href = "/";
+            },
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

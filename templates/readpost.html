@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+    <style>
+        * {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .btn-primary {
+            padding: 0;
+        }
+
+        .toptop-wrap {
+            background-color: transparent;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .top-wrap {
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            align-items: center;
+            margin: 20px;
+            height: 5vh;
+            margin-bottom: -32px;
+            z-index: 100;
+        }
+
+
+        .btn-primary {
+            color: black;
+            font-size: 32px;
+            background-color: transparent;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: lightskyblue;
+        }
+
+        .offcanvas {
+            width: 250px;
+        }
+
+        .offcanvas-title {
+            font-size: 32px;
+        }
+
+        .offcanvas-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .offcanvas-body > a {
+            text-decoration: none;
+            color: black;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .logo-image {
+            display: flex;
+            justify-content: center;
+            margin-bottom: -20px;
+            z-index: -1100;
+        }
+
+        .logo-image > a > img {
+            width: 256px;
+            height: 256px;
+
+        }
+
+        .blank {
+            width: 60px;
+        }
+
+        .middle > p {
+            color: #13191c;
+            font-size: 30px;
+            line-height: 150%;
+        }
+
+        .title > h1 > a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .row {
+            justify-content: center;
+        }
+
+
+        .form-control {
+            margin: 10px;
+            justify-items: flex-end;
+            justify-content: center;
+        }
+
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 30px;
+        }
+
+
+        .mypost > button {
+            margin-top: 10px;
+            margin-left: 180px;
+        }
+
+        .mycards {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .container {
+            background-color: transparent;
+
+        }
+        .btn {
+            display: flex;
+            margin: 5px;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        function showAndHide() {
+            let nav_list = document.getElementById("nav-list")
+            if (nav_list.style.display === "none") {
+                nav_list.style.display = "flex";
+            } else {
+                nav_list.style.display = "none";
+            }
+        }
+
+        $(document).ready(function () {
+
+            show_comment()
+        });
+
+        $(document).ready(function () {
+            show_comment()
+        });
+
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/teamproject",
+                data: {'name_give': name, 'comment_give': comment},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function show_comment() {
+            $('#comment-list').empty()
+            $.ajax({
+                type: "GET",
+                url: "/teamproject",
+                data: {},
+                success: function (response) {
+                    let rows = response['comments']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+
+                        let temp_html = `<div class="card">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>${comment}</p>
+                                <footer class="blockquote-footer">${name}</footer>
+                            </blockquote>
+                        </div>
+                    </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+
+<div class="toptop-wrap">
+    <div class="top-wrap">
+        <button
+                class="btn btn-primary"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"
+        >
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div
+                class="offcanvas offcanvas-end"
+                tabindex="-1"
+                id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel"
+        >
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Daliy Fit</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="offcanvas-body">
+                <a href="/">사이트소개글</a>
+                <a href="/postlist/">게시판</a>
+                <a href="/signin/">로그인</a>
+                <a href="/signup/">회원가입</a>
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="blank"></div>
+        <div class="logo-image">
+            <a href="#"
+            ><img src="../static/daily_fit_logo.jpg" alt="No Image"
+            /></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <hr/>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr align="left">
+                        <th>[게시판] Reviews</th>
+                        <th>BEST 3 내돈내산 프로틴 쉐이크 추천합니다!!</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>작성일
+                        </td>
+                        <td>
+                            2022-10-29 10:25:23
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>작성자
+                        </td>
+                        <td>
+                            protein lover <span style='float:right'>조회 : 115</span>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="form-floating">
+                    <div class="card" style="...">
+
+                        <div class="card-body">
+                            <p class="card-text">
+                            <p>안녕하세요, protein lover입니다.</p>
+                            <p>요즘 많은 사람들이 건강에 관심을 많이 가지고 있고, 또한 몸에 건강한 음식까지 많이 신경쓰고 있는 추세인데요.</p>
+                            <p>요즘 음식으로도 단백질 섭취가 가능하지만..
+                                음식 말고도 손쉽게 단백질을 챙겨먹을 수 있어서 그런지 단백질 음료, 프로틴바, 프로틴과자 등등 이런거에 더 관심이 가는거 같아요.</p>
+                            <p> 그래서 오늘은 제가 그동안 내돈내산으로 먹어봤던 프로틴 쉐이크 중 BEST 3만 가져와서 공유해보려고 합니다!!!!</p>
+                            <p> 1. 마이 프로틴
+                                - 이 프로틴 쉐이크는 파우더와 물과 함께 섞어먹을때 파우더 입자가 고와서 물과 잘 희석되는 것을 볼 수가 있었어요. 다른 프로틴쉐이크같은 경우에는 그렇지
+                                못해서
+                                먹다보면 잘
+                                안섞이는 부분도 있어서 그런 점이 매우 아쉬웠거든요. 그런면에서 볼때 마이 프로틴은 굉장히 만족스러운 상품이었습니다!!</p>
+
+                            <p> 2. 슈퍼 프로틴
+                                - 이 상품 같은 경우에는 12가지의 다양한 맛이 있다는 장점! 그리고 무엇보다 정말 맛있었습니다. 다른 상품의 경우에는 우유를 넣어야지 좀 더 맛이 나는
+                                경우가
+                                있었는데 이
+                                슈퍼 프로틴 같은 경우에는 물만 넣어도 맛있는데 150kcal밖에 안된다는 사실!!! </p>
+
+                            <p> 3. 네이쳐 프로틴
+                                - 이 프로틴은 먹자마자 몸에 흡수가 잘되는 느낌이 있었습니다. 초코맛이 정말 맛있었는데 단백질 특유의 비린맛도 없었고 굉장히 고소했다는 장점!! 깔끔하고
+                                너무
+                                맛있었습니다.</p>
+                            <p> 모든이들의 관심!! 다.이.어.트 </p>
+                            <p> 보통 다이어트하면 요요가 많이 오는편인데 요요가 오지 않으려면 기초대사량을 올려야된다고 하더라구요~~ 그러기 위해서는 근육량을 늘려야하는데 이를 위해서는
+                                운동을
+                                하거나 단백질을
+                                먹어야지 도움이 된다고 해요!</p>
+                            <p> 저는 운동보단 이런거 챙겨먹는게 더 쉬울거같아서 일단 열심히 이것저것 챙겨먹는중이랍니다 ㅎㅎ
+                                모두들 운동도 화이팅!! 단백질도 꼭 잘 챙겨드세요~~ </p>
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-condensed">
+                    <thead>
+                    <tr class="btn">
+                        <div class="mypost">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="url">
+                                <label for="floatingInput">ID </label>
+                            </div>
+
+                            <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                                  style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">댓글을 작성해주세요</label>
+                            </div>
+                            <button onclick="save_comment()" type="button" class="btn btn-dark">댓글 등록</button>
+                        </div>
+                        <div class="mycards" id="comment-list">
+                        </div>
+                    </tr>
+                    </thead>
+                    <div class="btn">
+                        <a class="btn btn-secondary" href="#" role="button">다음글</a>
+                        <button class="btn btn-secondary" type="submit">이전글</button>
+                        <input class="btn btn-secondary" type="button" value="목록">
+                        <input class="btn btn-secondary" type="submit" value="삭제">
+                    </div>
+
+                </table>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
